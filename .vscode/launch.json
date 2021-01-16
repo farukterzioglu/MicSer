@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-api",
+            "program": "${workspaceFolder}/bin/Debug/net5.0/MicSer.Api",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Debug Explorer",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-explorer",
+            "program": "${workspaceFolder}/src/MicSer.Explorer/bin/Debug/net5.0/MicSer.Explorer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/MicSer.Explorer",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        }
+    ]
+}

@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2C7C38C2-FEF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.Explorer", "src\MicSer.Explorer\MicSer.Explorer.csproj", "{35411AFB-1357-4528-96D0-2F94839C6E6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.Api", "src\MicSer.Api\MicSer.Api.csproj", "{7E1797EA-206A-44C5-95CA-7A994A18BC93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +34,21 @@ Global
 		{35411AFB-1357-4528-96D0-2F94839C6E6E}.Release|x64.Build.0 = Release|Any CPU
 		{35411AFB-1357-4528-96D0-2F94839C6E6E}.Release|x86.ActiveCfg = Release|Any CPU
 		{35411AFB-1357-4528-96D0-2F94839C6E6E}.Release|x86.Build.0 = Release|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Debug|x64.Build.0 = Debug|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Debug|x86.Build.0 = Debug|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Release|x64.ActiveCfg = Release|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Release|x64.Build.0 = Release|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Release|x86.ActiveCfg = Release|Any CPU
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{35411AFB-1357-4528-96D0-2F94839C6E6E} = {2C7C38C2-FEFA-4B88-A9E5-23A3A0AC9974}
+		{7E1797EA-206A-44C5-95CA-7A994A18BC93} = {2C7C38C2-FEFA-4B88-A9E5-23A3A0AC9974}
 	EndGlobalSection
 EndGlobal
