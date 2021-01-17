@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build-api",
-            "program": "${workspaceFolder}/bin/Debug/net5.0/MicSer.Api",
+            "program": "${workspaceFolder}/src/MicSer.Api/bin/Debug/net5.0/MicSer.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

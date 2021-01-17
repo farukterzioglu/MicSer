@@ -18,18 +18,17 @@ namespace MicSer.Explorer
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseSerilog((ctx, config) =>
+                .UseSerilog((hostingContext, loggerConfiguration) =>
                 {
-                    config
-                        .MinimumLevel.Information()
+                    // config.MinimumLevel.Information().Enrich.FromLogContext().WriteTo.Console(new ElasticsearchJsonFormatter());
+                    loggerConfiguration
                         .Enrich.FromLogContext()
-                        .WriteTo.Console()
-                        // .WriteTo.Console(new ElasticsearchJsonFormatter());
-                        ;
+                        .ReadFrom.Configuration(hostingContext.Configuration);
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddHostedService<Worker>();
+                    services.AddHttpClient();
+                    services.AddHostedService<ExplorerJob>();
                 });
     }
 }
