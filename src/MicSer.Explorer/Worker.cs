@@ -12,6 +12,7 @@ using Polly;
 using Polly.Fallback;
 using Polly.Timeout;
 using Polly.Wrap;
+using Polly.CircuitBreaker;
 
 namespace MicSer.Explorer
 {
@@ -57,12 +58,14 @@ namespace MicSer.Explorer
                 // await BroadcastWithTimeout(1);
                 // await BroadcastWithTimeoutNonCancellable(1);
                 // await BroadcastWithTimeoutButQuick(1);
+                // await BroadcastWithPessimisticTimeoutWithCancellation();
 
+                var fee = await GetFeeFastAndWithBackup(stoppingToken);
+                _logger.LogInformation($"Fee: { fee }");
             }
         }
 
-        // TODO: test this 
-        private async Task BroadcastWithTimeoutWithCancellation()
+        private async Task BroadcastWithPessimisticTimeoutWithCancellation()
         {
             var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromSeconds(2), TimeoutStrategy.Pessimistic, (context, timespan, task) => 
             {
@@ -121,7 +124,7 @@ namespace MicSer.Explorer
         }
 
         
-        // Timeout is 2 second but we are not sending for critical jobs 
+        // Timeout is 2 second but we are not cancelling for critical jobs 
         private async Task BroadcastWithTimeoutButQuick(int txId)
         {
             var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromSeconds(2), TimeoutStrategy.Optimistic);
@@ -281,6 +284,77 @@ namespace MicSer.Explorer
         private async Task BroadcastToAlternative()
         {
             
+        }
+
+        AsyncCircuitBreakerPolicy breakerPolicy = Policy
+            .Handle<TimeoutRejectedException>()
+            .Or<HttpRequestException>( e => e.StatusCode == HttpStatusCode.InternalServerError)
+            .Or<Exception>()
+            .CircuitBreakerAsync(
+                exceptionsAllowedBeforeBreaking: 3, 
+                durationOfBreak: TimeSpan.FromSeconds(15)
+            );
+
+        private async Task<int> GetFeeFastAndWithBackup(CancellationToken cancellationToken)
+        {
+            int fallbackFee = 5;
+
+            CircuitState breakerState = breakerPolicy.CircuitState;
+            if (breakerState == CircuitState.Open ) 
+            {
+                _logger.LogWarning($"Circuit breaker is open, falling back to {fallbackFee}");
+                return fallbackFee;
+            }   
+
+            var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromSeconds(4), TimeoutStrategy.Optimistic);
+
+            AsyncFallbackPolicy<int> fallbackForTimeout = Policy<int>
+                .Handle<TimeoutRejectedException>()
+                .FallbackAsync<int>(
+                    fallbackValue: fallbackFee, 
+                    onFallbackAsync: async c => _logger.LogError($"Fee endpoint timed out, falling back to {fallbackFee}!")
+                );
+
+            AsyncFallbackPolicy<int> fallbackForException = Policy<int>
+                .Handle<HttpRequestException>( e => e.StatusCode == HttpStatusCode.InternalServerError)
+                .Or<BrokenCircuitException>()
+                .Or<Exception>()
+                .FallbackAsync<int>(
+                    fallbackValue: fallbackFee, 
+                    onFallbackAsync: async c => { 
+                        var message = $"Couldn't get fee, falling back to {fallbackFee}! ";
+
+                        switch (c.Exception)
+                        {
+                            case HttpRequestException httpRequestException:
+                                message += $"Status code: {httpRequestException.StatusCode}";
+                                break;
+                            case BrokenCircuitException brokenCircuitException:
+                                message += $"Exception: {brokenCircuitException.InnerException.Message}";
+                                break;
+                            default:
+                                message += $"Exception: {c.Exception.Message}";
+                                break;
+                        }
+
+                        _logger.LogError(message); 
+                    });
+            
+            AsyncPolicyWrap<int> policyWrap = 
+                fallbackForException.WrapAsync(
+                    fallbackForTimeout).WrapAsync(
+                        breakerPolicy).WrapAsync(
+                            timeoutPolicy);
+
+            int result = await policyWrap.ExecuteAsync( async cancellationToken => {
+                var feeReponse = await _client.GetAsync($"/network/getfee", cancellationToken);
+                feeReponse.EnsureSuccessStatusCode();
+
+                var feeReponseStr = await feeReponse.Content.ReadAsStringAsync(CancellationToken.None);
+                return int.Parse(feeReponseStr);
+            }, cancellationToken);
+
+            return result;
         }
 
         private async Task<int> GetBalanceWithRetry()

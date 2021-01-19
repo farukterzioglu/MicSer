@@ -145,5 +145,16 @@ namespace MicSer.Api.Controllers
             // fail after 3 requests in 5 seconds.
             throw new NotImplementedException();
         }
+
+        [HttpGet("getfee")]
+        public async Task<IActionResult> GetFee()
+        {
+            await Task.Delay(TimeSpan.FromSeconds(2 + new Random().Next(0,3)));
+
+            if(new Random().Next(0,5) <= 1) 
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok(10);
+        }
     }
 }
