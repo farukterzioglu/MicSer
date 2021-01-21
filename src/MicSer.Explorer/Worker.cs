@@ -276,14 +276,33 @@ namespace MicSer.Explorer
             if(result.IsSuccess) _logger.LogInformation($"Transaction hash: {result}");
         }
 
-        private async Task BroadcastWithBackup()
+        private async Task BroadcastWithBackup(string hex, CancellationToken cancellationToken)
         {
-            
+            var broadcastFallbackPolicy = Policy<string>
+                .Handle<Exception>()
+                .FallbackAsync<string>( 
+                    fallbackAction: cancellationToken => broadcastToFirst(hex, cancellationToken), 
+                    onFallbackAsync: async c => _logger.LogError($"Broadcast to first failed, falling back to second!"));
+
+             string result = await broadcastFallbackPolicy.ExecuteAsync( cancellationToken => broadcastToFirst(hex, cancellationToken), cancellationToken);
         }
 
-        private async Task BroadcastToAlternative()
+        private async Task<string> broadcastToFirst(string hex, CancellationToken cancellationToken)
         {
-            
+            var broadCastResponse = await _client.GetAsync($"/network/broadcast", cancellationToken);
+            broadCastResponse.EnsureSuccessStatusCode();
+
+            var broadCastResponseStr = await broadCastResponse.Content.ReadAsStringAsync(CancellationToken.None);
+            return broadCastResponseStr;
+        }
+
+        private async Task<string> BroadcastToAlternative(string hex, CancellationToken cancellationToken)
+        {
+            var broadCastResponse = await _client.GetAsync($"/network/broadcastbackup", cancellationToken);
+            broadCastResponse.EnsureSuccessStatusCode();
+
+            var broadCastResponseStr = await broadCastResponse.Content.ReadAsStringAsync(CancellationToken.None);
+            return broadCastResponseStr;
         }
 
         AsyncCircuitBreakerPolicy breakerPolicy = Policy

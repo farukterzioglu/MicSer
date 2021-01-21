@@ -64,7 +64,7 @@ namespace MicSer.Api.Controllers
         [HttpPost("broadcast")]
         public IActionResult Broadcast()
         {
-            if(++counter == 5)
+            if(++counter == 3)
             {
                 counter = 0;
                 return StatusCode(StatusCodes.Status500InternalServerError);

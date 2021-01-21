@@ -1,2 +1,2 @@
-`dotnet build src/MicSer.Api/MicSer.Api.csproj && dotnet src/MicSer.Api/bin/Debug/net5.0/MicSer.Api.dll`  
-  
+`MicSer.Api` contains a not reliable API sample  
+`MicSer.Explorer` contains Polly samples  
