@@ -142,8 +142,10 @@ namespace MicSer.Api.Controllers
         [HttpGet("tx")]
         public IActionResult GetTx()
         {
-            // fail after 3 requests in 5 seconds.
-            throw new NotImplementedException();
+            if(new Random().Next(0,5) <= 2) 
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            return Ok();                
         }
 
         [HttpGet("getfee")]

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Polly.Registry;
 using Serilog;
 using Serilog.Formatting.Elasticsearch;
 
@@ -28,7 +29,15 @@ namespace MicSer.Explorer
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddHttpClient();
-                    services.AddHostedService<ExplorerJob>();
+
+                    // services.AddHostedService<ExplorerJob>();
+                    
+                    PolicyRegistry registry = new PolicyRegistry();
+                    registry.Add(ConsumerPolicies.GetTxCircuitBreaker, ConsumerPolicies.CreateGetTxCircuitBreaker());
+                    services.AddSingleton<IReadOnlyPolicyRegistry<string>>(registry);
+
+                    services.AddTransient<IHostedService, Consumer>();
+                    services.AddTransient<IHostedService, Consumer>();
                 });
     }
 }

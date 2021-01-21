@@ -60,8 +60,8 @@ namespace MicSer.Explorer
                 // await BroadcastWithTimeoutButQuick(1);
                 // await BroadcastWithPessimisticTimeoutWithCancellation();
 
-                var fee = await GetFeeFastAndWithBackup(stoppingToken);
-                _logger.LogInformation($"Fee: { fee }");
+                // var fee = await GetFeeFastAndWithBackup(stoppingToken);
+                // _logger.LogInformation($"Fee: { fee }");
             }
         }
 
