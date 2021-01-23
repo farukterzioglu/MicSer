@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Polly.Registry;
 using Serilog;
-using Serilog.Formatting.Elasticsearch;
 
 namespace MicSer.Explorer
 {

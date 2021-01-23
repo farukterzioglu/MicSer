@@ -1,5 +1,5 @@
 Some Polly samples  
-`dotnet run --project src/MicSer.Api`
+`dotnet run --project src/MicSer.ExplorerApi`
 
 Sample output  
 ```
