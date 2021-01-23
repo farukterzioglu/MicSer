@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,8 @@ namespace MicSer.TracedApi.Controllers
     [Produces("application/json")]
     public class InfoController : ControllerBase
     {
+        public static readonly ActivitySource ActivitySource = new ActivitySource("MicSer.TracedApi");
+        
         private readonly ILogger<InfoController> _logger;
 
         public InfoController(ILogger<InfoController> logger)
@@ -22,13 +25,26 @@ namespace MicSer.TracedApi.Controllers
         [HttpGet]
         public async Task<int> Get()
         {
-            if(new Random().Next(0,2) == 0)
+            using (var activity = ActivitySource.StartActivity("ResponseCreation", ActivityKind.Server))
             {
-                await Task.Delay(TimeSpan.FromSeconds(3));
-                return 10;
-            }
+                if(new Random().Next(0,2) == 0)
+                {
+                    using (var subActivity = ActivitySource.StartActivity("LongRunningTask", ActivityKind.Server))
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(3));
+                    }
 
-            return 2;
+                    using (var subActivity = ActivitySource.StartActivity("ShortRunningTask", ActivityKind.Server))
+                    {
+                        await Task.Delay(TimeSpan.FromMilliseconds(500));
+                    }
+                    
+                    return 10;
+                }
+
+                await Task.Delay(TimeSpan.FromMilliseconds(500));
+                return 2;
+            }
         }
     }
 }

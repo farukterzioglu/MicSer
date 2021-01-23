@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Resources;
+using OpenTelemetry;
 
 namespace MicSer.TracedApi
 {
@@ -32,6 +35,8 @@ namespace MicSer.TracedApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MicSer.TracedApi", Version = "v1" });
             });
+
+            ConfigureOpenTelemetry(Configuration, services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +59,18 @@ namespace MicSer.TracedApi
             {
                 endpoints.MapControllers();
             });
+        }
+        
+        private static void ConfigureOpenTelemetry(IConfiguration configuration, IServiceCollection services)
+        {
+            services.AddOpenTelemetryTracing((builder) => builder
+                .AddSource("MicSer.TracedApi")
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(
+                    serviceName: "TracedApi",
+                    serviceNamespace:  "MicSer" ))
+                .AddAspNetCoreInstrumentation()
+                .AddJaegerExporter()
+            );
         }
     }
 }

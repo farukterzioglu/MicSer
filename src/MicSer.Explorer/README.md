@@ -1,4 +1,7 @@
-Some Polly samples  
+`MicSer.ExplorerApi` contains a not reliable API sample  
+`MicSer.Explorer` contains Polly samples  
+
+Run the sample API  
 `dotnet run --project src/MicSer.ExplorerApi`
 
 Sample output  
