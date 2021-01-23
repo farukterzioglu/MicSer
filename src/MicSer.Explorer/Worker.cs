@@ -281,7 +281,7 @@ namespace MicSer.Explorer
             var broadcastFallbackPolicy = Policy<string>
                 .Handle<Exception>()
                 .FallbackAsync<string>( 
-                    fallbackAction: cancellationToken => broadcastToFirst(hex, cancellationToken), 
+                    fallbackAction: cancellationToken => broadcastToAlternative(hex, cancellationToken), 
                     onFallbackAsync: async c => _logger.LogError($"Broadcast to first failed, falling back to second!"));
 
              string result = await broadcastFallbackPolicy.ExecuteAsync( cancellationToken => broadcastToFirst(hex, cancellationToken), cancellationToken);
@@ -296,7 +296,7 @@ namespace MicSer.Explorer
             return broadCastResponseStr;
         }
 
-        private async Task<string> BroadcastToAlternative(string hex, CancellationToken cancellationToken)
+        private async Task<string> broadcastToAlternative(string hex, CancellationToken cancellationToken)
         {
             var broadCastResponse = await _client.GetAsync($"/network/broadcastbackup", cancellationToken);
             broadCastResponse.EnsureSuccessStatusCode();
