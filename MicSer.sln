@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2C7C38C2-FEF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.Explorer", "src\MicSer.Explorer\MicSer.Explorer.csproj", "{35411AFB-1357-4528-96D0-2F94839C6E6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.Api", "src\MicSer.Api\MicSer.Api.csproj", "{7E1797EA-206A-44C5-95CA-7A994A18BC93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.ExplorerApi", "src\MicSer.ExplorerApi\MicSer.ExplorerApi.csproj", "{7E1797EA-206A-44C5-95CA-7A994A18BC93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
