@@ -16,7 +16,6 @@ namespace MicSer.Explorer
             Host.CreateDefaultBuilder(args)
                 .UseSerilog((hostingContext, loggerConfiguration) =>
                 {
-                    // config.MinimumLevel.Information().Enrich.FromLogContext().WriteTo.Console(new ElasticsearchJsonFormatter());
                     loggerConfiguration
                         .Enrich.FromLogContext()
                         .ReadFrom.Configuration(hostingContext.Configuration);
