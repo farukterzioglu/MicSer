@@ -66,6 +66,17 @@
             "cwd": "${workspaceFolder}/src/MicSer.TracedConsumer",
             "console": "internalConsole",
             "stopAtEntry": false
+        },
+        {
+            "name": "Debug Block Explorer",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-block-explorer",
+            "program": "${workspaceFolder}/src/MicSer.BlockExplorer/bin/Debug/net5.0/MicSer.BlockExplorer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/MicSer.BlockExplorer",
+            "console": "internalConsole",
+            "stopAtEntry": false
         }
     ]
 }

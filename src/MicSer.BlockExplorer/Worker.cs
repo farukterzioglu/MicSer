@@ -11,10 +11,12 @@ namespace MicSer.BlockExplorer
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
+        private readonly RpcProxy _rpcProxy;
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger, RpcProxy rpcProxy)
         {
             _logger = logger;
+            _rpcProxy = rpcProxy;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -22,7 +24,9 @@ namespace MicSer.BlockExplorer
             while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
+                await Task.Delay(5000, stoppingToken);
+
+                await _rpcProxy.GenerateBlock();
             }
         }
     }
