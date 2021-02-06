@@ -1,1 +1,5 @@
-docker run --name krakend --rm -p 8443:18443 -v $PWD:/etc/krakend/ devopsfaith/krakend  
+### Static host list 
+`docker run --name krakend --rm -p 8443:18443 -v $PWD/static:/etc/krakend/ devopsfaith/krakend`
+
+### Service discovery with etcd
+`docker run --name krakend --rm -p 8443:18443 -v $PWD/etcd:/etc/krakend/ devopsfaith/krakend`

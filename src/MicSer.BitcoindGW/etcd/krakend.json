@@ -1,0 +1,41 @@
+{
+    "version": 2,
+    "extra_config": {
+      "github_com/devopsfaith/krakend-etcd": {
+        "machines": [
+          "http://52.174.66.233:2379"
+        ],
+        "client_version": "v3",
+        "dial_timeout": "5s",
+        "dial_keepalive": "30s",
+        "header_timeout": "1s"
+      }
+    },
+    "timeout": "500ms",
+    "cache_ttl": "300s",
+    "output_encoding": "json",
+    "name": "Bitcoind GW",
+    "port": 18443,
+    "endpoints": [
+      {
+        "endpoint": "/",
+        "output_encoding": "no-op",
+        "extra_config": {},
+        "headers_to_pass": [
+          "Authorization"
+        ],
+        "backend": [
+          {
+            "url_pattern": "/",
+            "encoding": "no-op",
+            "sd": "etcd",
+            "host": [
+              "bitcoin"
+            ],
+            "disable_host_sanitize": true
+          }
+        ],
+        "method": "POST"
+      }
+    ]
+  }

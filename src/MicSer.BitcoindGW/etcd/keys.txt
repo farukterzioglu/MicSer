@@ -1,0 +1,2 @@
+bitcoin/node1	http://host.docker.internal:18443
+bitcoin/node2	http://host.docker.internal:18444
