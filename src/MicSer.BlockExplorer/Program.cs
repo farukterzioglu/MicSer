@@ -22,7 +22,7 @@ namespace MicSer.BlockExplorer
                 .ConfigureServices((hostContext, services) =>
                 {
                     RpcSettings rpcSettings =  new RpcSettings();
-                    hostContext.Configuration.Bind("Bitcoin", rpcSettings);
+                    hostContext.Configuration.Bind("BitcoinGW", rpcSettings);
 
                     services.AddHostedService<Worker>();
                     services.AddHttpClient<RpcProxy>(cfg =>

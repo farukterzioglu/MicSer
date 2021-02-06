@@ -1,0 +1,1 @@
+docker run --name krakend --rm -p 8443:18443 -v $PWD:/etc/krakend/ devopsfaith/krakend  
