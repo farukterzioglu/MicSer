@@ -1,0 +1,31 @@
+{
+    "version": 2,
+    "extra_config": {},
+    "timeout": "500ms",
+    "cache_ttl": "300s",
+    "output_encoding": "json",
+    "name": "Bitcoind GW",
+    "port": 18443,
+    "endpoints": [
+      {
+        "endpoint": "/",
+        "output_encoding": "no-op",
+        "extra_config": {},
+        "headers_to_pass": [
+          "Authorization"
+        ],
+        "backend": [
+          {
+            "url_pattern": "/",
+            "encoding": "no-op",
+            "sd": "dns",
+            "host": [
+              "http://bitcoind.service.consul:18443"
+            ],
+            "disable_host_sanitize": true
+          }
+        ],
+        "method": "POST"
+      }
+    ]
+  }
