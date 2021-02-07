@@ -26,7 +26,14 @@ namespace MicSer.BlockExplorer
                 _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
                 await Task.Delay(5000, stoppingToken);
 
-                await _rpcProxy.GenerateBlock();
+                try
+                {
+                    await _rpcProxy.GenerateBlock();
+                }
+                catch (System.Exception ex)
+                {
+                     _logger.LogError(ex.ToString());
+                }
             }
         }
     }
