@@ -1,16 +1,12 @@
 {
     "version": 2,
-    "extra_config": {},
-    "timeout": "500ms",
-    "cache_ttl": "300s",
     "output_encoding": "json",
     "name": "Bitcoind GW",
-    "port": 18443,
+    "port": 8443,
     "endpoints": [
       {
         "endpoint": "/",
         "output_encoding": "no-op",
-        "extra_config": {},
         "headers_to_pass": [
           "Authorization"
         ],
@@ -21,8 +17,7 @@
             "host": [
               "http://host.docker.internal:18443",
               "http://host.docker.internal:18444"
-            ],
-            "disable_host_sanitize": false
+            ]
           }
         ],
         "method": "POST"

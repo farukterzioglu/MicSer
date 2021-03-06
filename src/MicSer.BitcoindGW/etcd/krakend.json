@@ -3,7 +3,7 @@
     "extra_config": {
       "github_com/devopsfaith/krakend-etcd": {
         "machines": [
-          "http://52.174.66.233:2379"
+          "http://.westeurope.cloudapp.azure.com:2379"
         ],
         "client_version": "v3",
         "dial_timeout": "5s",
@@ -15,7 +15,7 @@
     "cache_ttl": "300s",
     "output_encoding": "json",
     "name": "Bitcoind GW",
-    "port": 18443,
+    "port": 8443,
     "endpoints": [
       {
         "endpoint": "/",
