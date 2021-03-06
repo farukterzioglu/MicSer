@@ -79,7 +79,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/MicSer.Identity/MicSer.Identity.csproj",
+                "${workspaceFolder}/src/MicSer.IdentityServer/MicSer.IdentityServer.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],

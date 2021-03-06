@@ -337,46 +337,4 @@ src/libraries/eos-sharp
 
 .nyc_output/
 
-# Polkadot API - NodeJS
-src/api/Polkadot.Api/src/lib-cov
-src/api/Polkadot.Api/src/*.seed
-src/api/Polkadot.Api/src/*.log
-src/api/Polkadot.Api/src/*.csv
-src/api/Polkadot.Api/src/*.dat
-src/api/Polkadot.Api/src/*.out
-src/api/Polkadot.Api/src/*.pid
-src/api/Polkadot.Api/src/*.gz
-src/api/Polkadot.Api/src/*.swp
-
-src/api/Polkadot.Api/src/pids
-src/api/Polkadot.Api/src/logs
-src/api/Polkadot.Api/src/results
-src/api/Polkadot.Api/src/tmp
-
-# Build
-src/api/Polkadot.Api/src/public/css/main.css
-
-# Coverage reports
-src/api/Polkadot.Api/src/coverage
-
-# API keys and secrets
-src/api/Polkadot.Api/src/.env
-
-# Dependency directory
-src/api/Polkadot.Api/src/node_modules
-src/api/Polkadot.Api/src/bower_components
-
-# Editors
-src/api/Polkadot.Api/src/.idea
-src/api/Polkadot.Api/src/*.iml
-
-# OS metadata
-src/api/Polkadot.Api/src/.DS_Store
-src/api/Polkadot.Api/src/Thumbs.db
-
-# Ignore built ts files
-src/api/Polkadot.Api/src/dist/**/*
-
-# ignore yarn.lock
-src/api/Polkadot.Api/src/yarn.lock
-dist/
+tempkey.jwk

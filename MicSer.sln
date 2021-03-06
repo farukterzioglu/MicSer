@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.TracedConsumer", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.BlockExplorer", "src\MicSer.BlockExplorer\MicSer.BlockExplorer.csproj", "{7B9D4793-F937-4B03-BF21-BE86A2166474}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.Identity", "src\MicSer.Identity\MicSer.Identity.csproj", "{F32D5553-D6F1-4AB4-B35C-A656F2480F58}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.IdentityServer", "src\MicSer.IdentityServer\MicSer.IdentityServer.csproj", "{F32D5553-D6F1-4AB4-B35C-A656F2480F58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicSer.SecuredApi", "src\MicSer.SecuredApi\MicSer.SecuredApi.csproj", "{901C3320-5CC7-4714-B9CC-E52508CAD1DA}"
 EndProject

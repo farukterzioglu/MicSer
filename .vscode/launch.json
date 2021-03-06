@@ -94,9 +94,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build-identity-server",
-            "program": "${workspaceFolder}/src/MicSer.Identity/bin/Debug/net5.0/MicSer.Identity.dll",
+            "program": "${workspaceFolder}/src/MicSer.IdentityServer/bin/Debug/netcoreapp3.1/MicSer.IdentityServer.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/MicSer.Identity",
+            "cwd": "${workspaceFolder}/src/MicSer.IdentityServer",
             "console": "internalConsole",
             "stopAtEntry": false
         }
