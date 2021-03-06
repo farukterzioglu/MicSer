@@ -77,6 +77,17 @@
             "cwd": "${workspaceFolder}/src/MicSer.BlockExplorer",
             "console": "internalConsole",
             "stopAtEntry": false
+        },
+        {
+            "name": "Debug Secured Api",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-secured-api",
+            "program": "${workspaceFolder}/src/MicSer.SecuredApi/bin/Debug/net5.0/MicSer.SecuredApi.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/MicSer.SecuredApi",
+            "console": "internalConsole",
+            "stopAtEntry": false
         }
     ]
 }
