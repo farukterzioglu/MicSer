@@ -88,6 +88,17 @@
             "cwd": "${workspaceFolder}/src/MicSer.SecuredApi",
             "console": "internalConsole",
             "stopAtEntry": false
+        },
+        {
+            "name": "Debug Identity Server",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-identity-server",
+            "program": "${workspaceFolder}/src/MicSer.Identity/bin/Debug/net5.0/MicSer.Identity.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/MicSer.Identity",
+            "console": "internalConsole",
+            "stopAtEntry": false
         }
     ]
 }
