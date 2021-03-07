@@ -87,7 +87,11 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/MicSer.SecuredApi",
             "console": "internalConsole",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "URLS": "http://localhost:6001"
+            }
         },
         {
             "name": "Debug Identity Server",
@@ -98,7 +102,11 @@
             "args": [],
             "cwd": "${workspaceFolder}/src/MicSer.IdentityServer",
             "console": "internalConsole",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "URLS": "http://localhost:8081"
+            }
         }
     ]
 }

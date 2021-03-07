@@ -1,0 +1,1 @@
+curl --location --request GET 'http://localhost:6001/WeatherForecast' --header 'Authorization: Bearer [TOKEN]'

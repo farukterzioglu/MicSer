@@ -20,9 +20,8 @@ namespace MicSer.IdentityServer
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("scope1"),
-                new ApiScope("scope2"),
-                new ApiScope("secured-api", "Secured API")
+                new ApiScope("spend"),
+                new ApiScope("list")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -30,10 +29,13 @@ namespace MicSer.IdentityServer
             {
                 new Client() 
                 {
-                    ClientId = "spender",
+                    ClientName = "Spender",
+                    ClientId = "spender-app",
+                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) }, // 7d4edf45bfa0e987659e2b92aaf88e2d636475ad4cfccb8fb47eb3348f629c5f
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
-                    AllowedScopes = { "spend", "list" }
+                    AccessTokenLifetime = 180,
+                    AllowedScopes = { "spend", "list" },
+                    AllowAccessTokensViaBrowser = true
                 }
             };
 
