@@ -31,11 +31,20 @@ namespace MicSer.IdentityServer
                 {
                     ClientName = "Spender",
                     ClientId = "spender-app",
-                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) }, // 7d4edf45bfa0e987659e2b92aaf88e2d636475ad4cfccb8fb47eb3348f629c5f
+                    ClientSecrets = { new Secret("511536EF-F270-4058-80CA-1C89C192F69A".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AccessTokenLifetime = 180,
                     AllowedScopes = { "spend", "list" },
                     AllowAccessTokensViaBrowser = true
+                },
+                new Client() 
+                {
+                    ClientName = "Api Consumer",
+                    ClientId = "api-consumer",
+                    ClientSecrets = { new Secret("e1844b86-6eb6-4ed8-95f3-aa3656672ede".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AccessTokenLifetime = 60,
+                    AllowedScopes = { "list" }
                 }
             };
 

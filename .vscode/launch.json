@@ -94,6 +94,21 @@
             }
         },
         {
+            "name": "Debug Sec. Api Cons.",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-secured-api-consumer",
+            "program": "${workspaceFolder}/src/MicSer.SecuredApiConsumer/bin/Debug/net5.0/MicSer.SecuredApiConsumer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/MicSer.SecuredApiConsumer",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "URLS": "http://localhost:6001"
+            }
+        },
+        {
             "name": "Debug Identity Server",
             "type": "coreclr",
             "request": "launch",

@@ -74,6 +74,18 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "build-secured-api-consumer",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/MicSer.SecuredApiConsumer/MicSer.SecuredApiConsumer.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "build-identity-server",
             "command": "dotnet",
             "type": "process",
