@@ -30,6 +30,11 @@ namespace MicSer.IdentityServer
 
             var builder = services.AddIdentityServer(options =>
             {
+                // Required if the token requested inside of docker image, 
+                // otherwise authenticated api can't check the token's issuer from identity server
+                // can also be solved by defining ValidIssuers in authenticated api
+                // options.IssuerUri = "http://host.docker.internal:8081";
+
                 options.Events.RaiseErrorEvents = true;
                 options.Events.RaiseInformationEvents = true;
                 options.Events.RaiseFailureEvents = true;

@@ -42,7 +42,12 @@ namespace MicSer.SecuredApi
 
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateAudience = false
+                        ValidateAudience = false,
+                        ValidIssuers = new List<string>()
+                        {
+                            "http://localhost:8081",
+                            "http://host.docker.internal:8081"
+                        }
                     };
                 });
             
