@@ -36,8 +36,6 @@ namespace MicSer.SecuredApiConsumer
                     {
                         client.Timeout = TimeSpan.FromSeconds(30);
                     });
-                    services.AddTransient<IClientAccessTokenCache, CustomClientAccessTokenCache>();
-                    services.AddTransient<IClientAccessTokenManagementService, CustomClientAccessTokenManagementService>();
 
                     services.AddClientAccessTokenClient("securedApiClient", configureClient: client =>
                     {

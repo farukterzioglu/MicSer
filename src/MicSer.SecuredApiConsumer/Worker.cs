@@ -31,12 +31,8 @@ namespace MicSer.SecuredApiConsumer
 
                     try
                     {
-                        // var service = scope.ServiceProvider.GetService<IClientAccessTokenManagementService>();
-                        // var token = await service.GetClientAccessTokenAsync("SecuredApiProxy");
-
-                    var proxy = scope.ServiceProvider.GetService<SecuredApiProxy>();
-                    var list = await proxy.GetList();
-
+                        var proxy = scope.ServiceProvider.GetService<SecuredApiProxy>();
+                        var list = await proxy.GetList();
                     }
                     catch (System.Exception ex)
                     {
