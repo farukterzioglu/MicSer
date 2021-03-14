@@ -45,6 +45,15 @@ namespace MicSer.IdentityServer
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AccessTokenLifetime = 60,
                     AllowedScopes = { "list" }
+                },
+                new Client() 
+                {
+                    ClientName = "Api Gateway",
+                    ClientId = "api-gateway",
+                    ClientSecrets = { new Secret("f2483ed0-5b40-4b41-90cf-e7a8aa150c04".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AccessTokenLifetime = 60,
+                    AllowedScopes = { "list" }
                 }
             };
 

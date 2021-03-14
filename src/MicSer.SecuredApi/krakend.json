@@ -1,0 +1,39 @@
+{
+    "version": 2,
+    "extra_config": {},
+    "timeout": "3000ms",
+    "cache_ttl": "300s",
+    "output_encoding": "json",
+    "name": "Secured Api",
+    "port": 8080,
+    "endpoints": [
+      {
+        "endpoint": "/weatherforecastgw",
+        "method": "GET",
+        "output_encoding": "json",
+        "extra_config": {},
+        "backend": [
+          {
+            "url_pattern": "/weatherforecast",
+            "encoding": "json",
+            "sd": "static",
+            "method": "GET",
+            "extra_config": {
+              "github.com/devopsfaith/krakend-oauth2-clientcredentials": {
+                "client_id": "api-gateway",
+                "client_secret": "f2483ed0-5b40-4b41-90cf-e7a8aa150c04",
+                "scopes": "list",
+                "token_url": "http://host.docker.internal:8081/connect/token"
+              }
+            },
+            "host": [
+              "http://host.docker.internal:6001"
+            ],
+            "disable_host_sanitize": false,
+            "is_collection": true,
+            "target": ""
+          }
+        ]
+      }
+    ]
+  }
