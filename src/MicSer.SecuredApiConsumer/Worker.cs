@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using IdentityModel.AspNetCore.AccessTokenManagement;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -28,9 +29,19 @@ namespace MicSer.SecuredApiConsumer
                 {
                     _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
+                    try
+                    {
+                        // var service = scope.ServiceProvider.GetService<IClientAccessTokenManagementService>();
+                        // var token = await service.GetClientAccessTokenAsync("SecuredApiProxy");
+
                     var proxy = scope.ServiceProvider.GetService<SecuredApiProxy>();
                     var list = await proxy.GetList();
 
+                    }
+                    catch (System.Exception ex)
+                    {
+                         _logger.LogError(ex.ToString());
+                    }
                     await Task.Delay(1000, stoppingToken);
                 }
             }
