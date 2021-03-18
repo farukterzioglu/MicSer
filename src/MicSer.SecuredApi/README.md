@@ -6,3 +6,6 @@ curl --location --request GET 'http://localhost:8080/weatherforecast'
 
 // Problem with issuer name   
 https://github.com/IdentityServer/IdentityServer4/issues/501#issuecomment-377936562  
+
+docker build -t securedapi .  
+docker run -it -e ASPNETCORE_ENVIRONMENT=Development -p 6001:80 securedapi:latest  

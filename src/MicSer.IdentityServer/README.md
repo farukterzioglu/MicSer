@@ -1,5 +1,5 @@
 docker build -t identityserver .  
-docker run -it -e ASPNETCORE_ENVIRONMENT=Development -p 8081:80 identityserver:latest  
+docker run --rm -d -e ASPNETCORE_ENVIRONMENT=Development -p 8081:80 --name identityserver identityserver:latest  
 
 http://localhost:8081/  
 
